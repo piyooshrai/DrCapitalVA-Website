@@ -1,7 +1,5 @@
 import { Resend } from 'resend';
 
-const resend = new Resend(process.env.RESEND_API_KEY);
-
 interface ContactRequest {
   name?: string;
   email: string;
@@ -16,6 +14,7 @@ interface ContactRequest {
 
 export async function POST(request: Request) {
   try {
+    const resend = new Resend(process.env.RESEND_API_KEY);
     const body: ContactRequest = await request.json();
 
     const { name, email, phone, specialty, message, practiceType, source, agent, type } = body;
