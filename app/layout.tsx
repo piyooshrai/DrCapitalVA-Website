@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import Script from 'next/script';
 import { DM_Serif_Display, Plus_Jakarta_Sans } from 'next/font/google';
 import './globals.css';
 import Navigation from '@/components/layout/Navigation';
@@ -49,12 +50,11 @@ export default function RootLayout({
       <head>
         {process.env.NEXT_PUBLIC_GA_ID && (
           <>
-            <script
-              async
+            <Script
               src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_ID}`}
               strategy="lazyOnload"
             />
-            <script
+            <Script
               id="google-analytics"
               strategy="lazyOnload"
               dangerouslySetInnerHTML={{
