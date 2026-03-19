@@ -48,7 +48,7 @@ const ContactForm = ({
 
       setMessage({
         type: 'success',
-        text: 'Thanks for reaching out! We'll be in touch within 24 hours.',
+        text: "Thanks for reaching out! We'll be in touch within 24 hours.",
       });
       e.currentTarget.reset();
     } catch (error) {
