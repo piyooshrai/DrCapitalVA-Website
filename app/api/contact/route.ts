@@ -58,7 +58,7 @@ export async function POST(request: Request) {
       to: 'info@thehuman.capital',
       subject,
       html: htmlBody,
-      replyTo: email,
+      reply_to: email,
     });
 
     if (response.error) {
