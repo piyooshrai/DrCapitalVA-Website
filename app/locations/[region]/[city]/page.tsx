@@ -67,7 +67,7 @@ export default function CityPage({ params }: { params: { region: string; city: s
 
           <h2 className="font-serif text-3xl text-teal-deep mb-8">Major Healthcare Providers</h2>
           <ul className="space-y-2 text-text-secondary mb-12">
-            {city.hospitals.map((hospital, idx) => (
+            {city.majorSystems.map((hospital, idx) => (
               <li key={idx} className="flex gap-3">
                 <span className="text-coral-accent font-bold">→</span>
                 <span>{hospital}</span>
