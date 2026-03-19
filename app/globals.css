@@ -1,0 +1,224 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --teal-deep: #0C3B3B;
+  --teal-mid: #1A5C5C;
+  --teal-light: #2A8A8A;
+  --teal-accent: #3DB5AD;
+  --warm-white: #FDF9F4;
+  --warm-cream: #F5EDE3;
+  --warm-sand: #E8DDD0;
+  --coral-accent: #D4856A;
+  --text-primary: #1A1A1A;
+  --text-secondary: #5A5A5A;
+  --text-muted: #8A8A8A;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-plus-jakarta, 'Plus Jakarta Sans', system-ui, sans-serif);
+  color: var(--text-primary);
+  background: var(--warm-white);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  transition: color 0.3s ease;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-dm-serif, 'DM Serif Display', Georgia, serif);
+}
+
+/* ─── UTILITY CLASSES ─── */
+
+.section-label {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--teal-light);
+  margin-bottom: 16px;
+}
+
+.section-title {
+  font-family: var(--font-dm-serif, 'DM Serif Display', Georgia, serif);
+  font-size: clamp(32px, 3.5vw, 48px);
+  color: var(--teal-deep);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  margin-bottom: 20px;
+}
+
+.section-sub {
+  font-size: 17px;
+  line-height: 1.7;
+  color: var(--text-secondary);
+  max-width: 600px;
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.7s ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ─── BUTTONS ─── */
+
+.btn-primary {
+  padding: 16px 36px;
+  background: var(--teal-deep);
+  color: white;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  border-radius: 60px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+  background: var(--teal-mid);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(12, 59, 59, 0.2);
+}
+
+.btn-outline {
+  padding: 16px 36px;
+  background: transparent;
+  color: var(--teal-deep);
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  border-radius: 60px;
+  border: 1.5px solid var(--teal-deep);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-outline:hover {
+  background: var(--teal-deep);
+  color: white;
+}
+
+.btn-white {
+  padding: 16px 40px;
+  background: white;
+  color: var(--teal-deep);
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  border-radius: 60px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-white:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 40px rgba(255, 255, 255, 0.2);
+}
+
+/* ─── ANIMATIONS ─── */
+
+@keyframes pulse-dot {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.4;
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes reveal {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ─── RESPONSIVE ─── */
+
+@media (max-width: 1024px) {
+  .hidden-md {
+    display: none !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .hidden-sm {
+    display: none !important;
+  }
+
+  html {
+    font-size: 14px;
+  }
+
+  .section-title {
+    font-size: clamp(28px, 4vw, 36px);
+  }
+}
+
+@media (max-width: 640px) {
+  .hidden-xs {
+    display: none !important;
+  }
+
+  .section-label {
+    font-size: 11px;
+  }
+
+  .section-sub {
+    font-size: 16px;
+  }
+}
