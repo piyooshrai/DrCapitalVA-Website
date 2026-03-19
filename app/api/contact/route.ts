@@ -84,7 +84,7 @@ export async function POST(request: Request) {
       `,
     });
 
-    return Response.json({ success: true, id: response.id }, { status: 200 });
+    return Response.json({ success: true, id: response.data?.id }, { status: 200 });
   } catch (error) {
     console.error('Contact API error:', error);
     return Response.json({ error: 'Internal server error' }, { status: 500 });
