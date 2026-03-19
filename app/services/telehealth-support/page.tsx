@@ -95,7 +95,7 @@ export default function TelehealthSupportPage() {
           <div className="bg-white rounded-2xl p-8 border border-gray-200 space-y-4 text-text-secondary">
             <div>
               <h3 className="font-semibold text-teal-deep mb-2">Pre-COVID</h3>
-              <p className="text-sm">Telehealth: <5% of visits</p>
+              <p className="text-sm">Telehealth: less than 5% of visits</p>
             </div>
             <div>
               <h3 className="font-semibold text-teal-deep mb-2">Post-COVID (2025)</h3>
