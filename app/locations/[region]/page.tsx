@@ -69,7 +69,7 @@ export default function RegionPage({ params }: { params: { region: string } }) {
                 className="bg-white rounded-lg p-6 border border-gray-200 hover:border-coral-accent hover:shadow-lg transition"
               >
                 <h3 className="font-bold text-teal-deep mb-2">{city.name}</h3>
-                <p className="text-text-secondary text-sm">{city.state}</p>
+                <p className="text-text-secondary text-sm">{('state' in city ? city.state : city.country)}</p>
               </a>
             ))}
           </div>
