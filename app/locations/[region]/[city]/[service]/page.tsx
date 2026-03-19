@@ -223,7 +223,7 @@ export default function CityServicePage({
 
           <h2 className="font-serif text-3xl text-teal-deep mb-8">Relevant Specialties in {cityData.name}</h2>
           <div className="grid sm:grid-cols-2 gap-4 mb-12">
-            {cityData.specialties.map((specialty) => (
+            {cityData.topSpecialties.map((specialty) => (
               <Link
                 key={specialty}
                 href={`/specialties/${specialty.toLowerCase().replace(/\s+/g, '-').replace(/\//g, '')}`}
