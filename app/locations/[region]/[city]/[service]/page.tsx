@@ -4,6 +4,7 @@ import Link from 'next/link';
 import Breadcrumbs from '@/components/common/Breadcrumbs';
 import ContactForm from '@/components/common/ContactForm';
 import { getRegion, getCity, getService } from '@/lib/healthcare-data';
+import { getCityServiceContent } from '@/lib/city-service-content';
 
 export const metadata: Metadata = {
   title: 'Healthcare Virtual Assistant Services',
@@ -136,6 +137,9 @@ export default function CityServicePage({
   const pt = partTimePrice[priceType];
   const ft = fullTimePrice[priceType];
 
+  // Load expanded content if available
+  const expandedContent = getCityServiceContent(params.region, params.city, params.service);
+
   return (
     <main>
       <section className="pt-32 pb-16 px-8 lg:px-16 bg-warm-white">
@@ -174,7 +178,7 @@ export default function CityServicePage({
 
           <h2 className="font-serif text-3xl text-teal-deep mb-8">Why {serviceData.name} Matters in {cityData.name}</h2>
           <p className="text-text-secondary leading-relaxed mb-8">
-            {cityData.name} healthcare practices face intense competition and rising administrative workload. {serviceData.name} support directly impacts your practice's efficiency, patient satisfaction, and revenue. By delegating these critical tasks to a healthcare-trained VA, your providers can focus on patient care while your practice operates at peak efficiency.
+            {expandedContent?.healthcareContext || `${cityData.name} healthcare practices face intense competition and rising administrative workload. ${serviceData.name} support directly impacts your practice's efficiency, patient satisfaction, and revenue. By delegating these critical tasks to a healthcare-trained VA, your providers can focus on patient care while your practice operates at peak efficiency.`}
           </p>
 
           <h2 className="font-serif text-3xl text-teal-deep mb-8">Cost Comparison in {cityData.name}</h2>
@@ -284,18 +288,29 @@ export default function CityServicePage({
 
           <h2 className="font-serif text-3xl text-teal-deep mb-8">Frequently Asked Questions</h2>
           <div className="space-y-6 mb-12">
-            <div className="bg-white rounded-lg p-6 border border-gray-200">
-              <h3 className="font-bold text-teal-deep mb-2">How quickly can my VA start?</h3>
-              <p className="text-text-secondary text-sm">Within 48 hours of matching. We'll coordinate a handoff call and your VA will be supporting your practice immediately.</p>
-            </div>
-            <div className="bg-white rounded-lg p-6 border border-gray-200">
-              <h3 className="font-bold text-teal-deep mb-2">What if I need to scale up or down?</h3>
-              <p className="text-text-secondary text-sm">Month-to-month contract with no lock-in. Upgrade from part-time to full-time anytime, or cancel if your needs change.</p>
-            </div>
-            <div className="bg-white rounded-lg p-6 border border-gray-200">
-              <h3 className="font-bold text-teal-deep mb-2">Is it really HIPAA compliant?</h3>
-              <p className="text-text-secondary text-sm">Yes, fully HIPAA-certified with BAA agreements, background checks, encrypted VPN access, and zero breaches since 2019.</p>
-            </div>
+            {expandedContent?.faq && expandedContent.faq.length > 0 ? (
+              expandedContent.faq.map((item, idx) => (
+                <div key={idx} className="bg-white rounded-lg p-6 border border-gray-200">
+                  <h3 className="font-bold text-teal-deep mb-2">{item.question}</h3>
+                  <p className="text-text-secondary text-sm">{item.answer}</p>
+                </div>
+              ))
+            ) : (
+              <>
+                <div className="bg-white rounded-lg p-6 border border-gray-200">
+                  <h3 className="font-bold text-teal-deep mb-2">How quickly can my VA start?</h3>
+                  <p className="text-text-secondary text-sm">Within 48 hours of matching. We'll coordinate a handoff call and your VA will be supporting your practice immediately.</p>
+                </div>
+                <div className="bg-white rounded-lg p-6 border border-gray-200">
+                  <h3 className="font-bold text-teal-deep mb-2">What if I need to scale up or down?</h3>
+                  <p className="text-text-secondary text-sm">Month-to-month contract with no lock-in. Upgrade from part-time to full-time anytime, or cancel if your needs change.</p>
+                </div>
+                <div className="bg-white rounded-lg p-6 border border-gray-200">
+                  <h3 className="font-bold text-teal-deep mb-2">Is it really HIPAA compliant?</h3>
+                  <p className="text-text-secondary text-sm">Yes, fully HIPAA-certified with BAA agreements, background checks, encrypted VPN access, and zero breaches since 2019.</p>
+                </div>
+              </>
+            )}
           </div>
 
           <div className="bg-teal-deep text-white rounded-lg p-8 text-center">
