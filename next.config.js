@@ -1,4 +1,5 @@
 /** @type {import('next').NextConfig} */
+// Force Vercel rebuild
 const nextConfig = {
   images: {
     formats: ['image/avif', 'image/webp'],
