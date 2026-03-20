@@ -19,7 +19,9 @@ export async function generateStaticParams() {
 }
 
 export default function RegionPage({ params }: { params: { region: string } }) {
-  // Test: return params directly
+  const region = getRegion(params.region);
+  if (!region) notFound();
+
   const regionTitles = {
     usa: 'United States',
     uk: 'United Kingdom',
@@ -45,10 +47,11 @@ export default function RegionPage({ params }: { params: { region: string } }) {
     <main>
       <section className="pt-32 pb-16 px-8 lg:px-16 bg-warm-white">
         <div className="max-w-3xl mx-auto">
+          <Breadcrumbs items={[{ label: 'Locations', href: '#' }, { label: regionTitles[params.region as keyof typeof regionTitles] || 'Region', href: `/locations/${params.region}` }]} />
           <h1 className="font-serif text-4xl lg:text-5xl text-teal-deep mb-6">
-            Region: {params.region} - {regionTitles[params.region as keyof typeof regionTitles]}
+            Healthcare Virtual Assistant Services in {regionTitles[params.region as keyof typeof regionTitles]}
           </h1>
-          <p className="text-xl text-text-secondary">Test page - params received correctly.</p>
+          <p className="text-xl text-text-secondary">HIPAA-certified VA support for healthcare practices across the region.</p>
         </div>
       </section>
 
