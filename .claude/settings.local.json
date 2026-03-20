@@ -33,7 +33,9 @@
       "Bash(node -e \"const {getRegion, regions} = require\\(''./lib/healthcare-data.ts''\\); console.log\\(''regions:'', regions.length\\); console.log\\(''usa:'', regions.find\\(r => r.slug === ''usa''\\)?. slug\\);\")",
       "Bash(grep -n \"params\\\\.region\" app/locations/[region]/page.tsx)",
       "Bash(grep -c \"params\\\\.region\\\\|params\\\\.city\" app/locations/[region]/[city]/page.tsx)",
-      "Bash(grep -n \"params\\\\.\\\\\\(region\\\\|city\\\\|service\\\\\\)\" app/locations/[region]/[city]/[service]/page.tsx)"
+      "Bash(grep -n \"params\\\\.\\\\\\(region\\\\|city\\\\|service\\\\\\)\" app/locations/[region]/[city]/[service]/page.tsx)",
+      "Bash(\"/d/Application Development/The:*)",
+      "Bash(ls -lh lib/city-service-content*.ts)"
     ]
   }
 }

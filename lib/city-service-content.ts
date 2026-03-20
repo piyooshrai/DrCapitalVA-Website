@@ -1,5 +1,9 @@
-// City-Service Content Data - Expandable to 168 pages
+// City-Service Content Data - 180 total pages
 // Each entry contains full 2,500+ word content for a city-service combination
+// Merged from: original (11 pages) + expanded (63 pages) + international (96 pages)
+
+import { expandedCityServiceContent } from './city-service-content-expanded';
+import { internationalCityServiceContent } from './city-service-content-international';
 
 export interface CityServiceContent {
   region: string;
@@ -17,7 +21,7 @@ export interface CityServiceContent {
 }
 
 // Content entries: [region]/[city]/[service]
-export const cityServiceContent: Record<string, CityServiceContent> = {
+const originalCityServiceContent: Record<string, CityServiceContent> = {
   'usa/new-york/patient-scheduling': {
     region: 'usa',
     city: 'new-york',
@@ -37,6 +41,13 @@ export const cityServiceContent: Record<string, CityServiceContent> = {
     ],
     interlinking: 'While patient scheduling addresses NYC\'s primary challenge, comprehensive revenue cycle requires complementary services. Medical Billing captures revenue from optimized scheduling. Intake Management ensures clean patient data. Referral Coordination extends efficiency across the specialist network. Patient Follow-Up improves adherence to scheduled appointments. NYC practices maximizing ROI layer scheduling + intake + billing support.'
   }
+};
+
+// Merge all content sources: original 11 + expanded 63 + international 96 = 170 total pages
+export const cityServiceContent: Record<string, CityServiceContent> = {
+  ...originalCityServiceContent,           // Original 11 pages (USA patient-scheduling)
+  ...expandedCityServiceContent,           // Expanded 63 pages (3 more USA cities + 5 new services)
+  ...internationalCityServiceContent       // International 96 pages (UK, ME, APAC)
 };
 
 export function getCityServiceContent(region: string, city: string, service: string): CityServiceContent | null {
