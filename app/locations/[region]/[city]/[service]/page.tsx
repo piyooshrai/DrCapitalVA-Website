@@ -110,23 +110,24 @@ export async function generateStaticParams() {
   return params;
 }
 
-export default function CityServicePage({
+export default async function CityServicePage({
   params,
 }: {
-  params: { region: string; city: string; service: string };
+  params: Promise<{ region: string; city: string; service: string }>;
 }) {
-  const region = getRegion(params.region);
+  const { region: regionSlug, city: citySlug, service: serviceSlug } = await params;
+  const region = getRegion(regionSlug);
   if (!region) notFound();
 
-  const cityData = getCity(params.region, params.city);
+  const cityData = getCity(regionSlug, citySlug);
   if (!cityData) notFound();
 
-  const serviceData = getService(params.service);
+  const serviceData = getService(serviceSlug);
   if (!serviceData) notFound();
 
-  const tasks = serviceTasks[params.service as keyof typeof serviceTasks] || [];
-  const description = serviceDescriptions[params.service as keyof typeof serviceDescriptions];
-  const keyword = serviceKeywords[params.service as keyof typeof serviceKeywords];
+  const tasks = serviceTasks[serviceSlug as keyof typeof serviceTasks] || [];
+  const description = serviceDescriptions[serviceSlug as keyof typeof serviceDescriptions];
+  const keyword = serviceKeywords[serviceSlug as keyof typeof serviceKeywords];
 
   const currencies = {
     usa: '$',
@@ -135,7 +136,7 @@ export default function CityServicePage({
     apac: 'A$',
   };
 
-  const currencySymbol = currencies[params.region as keyof typeof currencies] || '$';
+  const currencySymbol = currencies[regionSlug as keyof typeof currencies] || '$';
 
   const partTimePrice = {
     usa: 700,
@@ -151,12 +152,12 @@ export default function CityServicePage({
     apac: 2010,
   };
 
-  const priceType = params.region as keyof typeof partTimePrice;
+  const priceType = regionSlug as keyof typeof partTimePrice;
   const pt = partTimePrice[priceType];
   const ft = fullTimePrice[priceType];
 
   // Load expanded content if available
-  const expandedContent = getCityServiceContent(params.region, params.city, params.service);
+  const expandedContent = getCityServiceContent(regionSlug, citySlug, serviceSlug);
 
   return (
     <main>
@@ -165,11 +166,11 @@ export default function CityServicePage({
           <Breadcrumbs
             items={[
               { label: 'Locations', href: '#' },
-              { label: region.name, href: `/locations/${params.region}` },
-              { label: cityData.name, href: `/locations/${params.region}/${params.city}` },
+              { label: region.name, href: `/locations/${regionSlug}` },
+              { label: cityData.name, href: `/locations/${regionSlug}/${citySlug}` },
               {
                 label: serviceData.name,
-                href: `/locations/${params.region}/${params.city}/${params.service}`,
+                href: `/locations/${regionSlug}/${citySlug}/${serviceSlug}`,
               },
             ]}
           />

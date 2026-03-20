@@ -25,11 +25,12 @@ export async function generateStaticParams() {
   return params;
 }
 
-export default function CityPage({ params }: { params: { region: string; city: string } }) {
-  const region = getRegion(params.region);
+export default async function CityPage({ params }: { params: Promise<{ region: string; city: string }> }) {
+  const { region: regionSlug, city: citySlug } = await params;
+  const region = getRegion(regionSlug);
   if (!region) notFound();
 
-  const city = getCity(params.region, params.city);
+  const city = getCity(regionSlug, citySlug);
   if (!city) notFound();
 
   const currencies = {
@@ -39,7 +40,7 @@ export default function CityPage({ params }: { params: { region: string; city: s
     apac: 'A$',
   };
 
-  const currencySymbol = currencies[params.region as keyof typeof currencies] || '$';
+  const currencySymbol = currencies[regionSlug as keyof typeof currencies] || '$';
 
   const partTimePrice = {
     usa: 700,
@@ -55,7 +56,7 @@ export default function CityPage({ params }: { params: { region: string; city: s
     apac: 2010,
   };
 
-  const priceType = params.region as keyof typeof partTimePrice;
+  const priceType = regionSlug as keyof typeof partTimePrice;
   const pt = partTimePrice[priceType];
   const ft = fullTimePrice[priceType];
 
@@ -65,8 +66,8 @@ export default function CityPage({ params }: { params: { region: string; city: s
         <div className="max-w-3xl mx-auto">
           <Breadcrumbs items={[
             { label: 'Locations', href: '#' },
-            { label: region.name, href: `/locations/${params.region}` },
-            { label: city.name, href: `/locations/${params.region}/${params.city}` },
+            { label: region.name, href: `/locations/${regionSlug}` },
+            { label: city.name, href: `/locations/${regionSlug}/${citySlug}` },
           ]} />
           <h1 className="font-serif text-4xl lg:text-5xl text-teal-deep mb-6">Healthcare Virtual Assistant Services in {city.name}</h1>
           <p className="text-xl text-text-secondary">Expert VA support for {city.name} healthcare practices. HIPAA-certified, EHR-trained, and ready to serve your patients.</p>
@@ -112,7 +113,7 @@ export default function CityPage({ params }: { params: { region: string; city: s
             ].map((service) => (
               <Link
                 key={service.slug}
-                href={`/locations/${params.region}/${params.city}/${service.slug}`}
+                href={`/locations/${regionSlug}/${citySlug}/${service.slug}`}
                 className="bg-white rounded-lg p-6 border border-gray-200 hover:border-coral-accent hover:shadow-lg transition"
               >
                 <h3 className="font-bold text-teal-deep">{service.name}</h3>
