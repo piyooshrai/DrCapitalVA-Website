@@ -18,8 +18,9 @@ export async function generateStaticParams() {
   ];
 }
 
-export default function RegionPage({ params }: { params: { region: string } }) {
-  const region = getRegion(params.region);
+export default async function RegionPage({ params }: { params: Promise<{ region: string }> }) {
+  const { region: regionSlug } = await params;
+  const region = getRegion(regionSlug);
   if (!region) notFound();
 
   const regionTitles = {
@@ -47,9 +48,9 @@ export default function RegionPage({ params }: { params: { region: string } }) {
     <main>
       <section className="pt-32 pb-16 px-8 lg:px-16 bg-warm-white">
         <div className="max-w-3xl mx-auto">
-          <Breadcrumbs items={[{ label: 'Locations', href: '#' }, { label: regionTitles[params.region as keyof typeof regionTitles] || 'Region', href: `/locations/${params.region}` }]} />
+          <Breadcrumbs items={[{ label: 'Locations', href: '#' }, { label: regionTitles[regionSlug as keyof typeof regionTitles] || 'Region', href: `/locations/${regionSlug}` }]} />
           <h1 className="font-serif text-4xl lg:text-5xl text-teal-deep mb-6">
-            Healthcare Virtual Assistant Services in {regionTitles[params.region as keyof typeof regionTitles]}
+            Healthcare Virtual Assistant Services in {regionTitles[regionSlug as keyof typeof regionTitles]}
           </h1>
           <p className="text-xl text-text-secondary">HIPAA-certified VA support for healthcare practices across the region.</p>
         </div>
@@ -57,15 +58,15 @@ export default function RegionPage({ params }: { params: { region: string } }) {
 
       <section className="py-20 px-8 lg:px-16">
         <div className="max-w-3xl mx-auto">
-          <h2 className="font-serif text-3xl text-teal-deep mb-8">Healthcare in {regionTitles[params.region as keyof typeof regionTitles]}</h2>
+          <h2 className="font-serif text-3xl text-teal-deep mb-8">Healthcare in {regionTitles[regionSlug as keyof typeof regionTitles]}</h2>
           <p className="text-text-secondary leading-relaxed mb-8">
-            {regionDescriptions[params.region as keyof typeof regionDescriptions]}
+            {regionDescriptions[regionSlug as keyof typeof regionDescriptions]}
           </p>
 
-          <h2 className="font-serif text-3xl text-teal-deep mb-8">Compliance Focus for {regionTitles[params.region as keyof typeof regionTitles]}</h2>
+          <h2 className="font-serif text-3xl text-teal-deep mb-8">Compliance Focus for {regionTitles[regionSlug as keyof typeof regionTitles]}</h2>
           <div className="bg-warm-cream rounded-lg p-8 border-l-4 border-coral-accent mb-12">
             <p className="text-text-secondary">
-              {regionComplianceFocus[params.region as keyof typeof regionComplianceFocus]}
+              {regionComplianceFocus[regionSlug as keyof typeof regionComplianceFocus]}
             </p>
           </div>
 
@@ -74,7 +75,7 @@ export default function RegionPage({ params }: { params: { region: string } }) {
             {region.cities.map((city) => (
               <a
                 key={city.slug}
-                href={`/locations/${params.region}/${city.slug}`}
+                href={`/locations/${regionSlug}/${city.slug}`}
                 className="bg-white rounded-lg p-6 border border-gray-200 hover:border-coral-accent hover:shadow-lg transition"
               >
                 <h3 className="font-bold text-teal-deep mb-2">{city.name}</h3>
@@ -93,11 +94,11 @@ export default function RegionPage({ params }: { params: { region: string } }) {
             ))}
           </div>
 
-          <h2 className="font-serif text-3xl text-teal-deep mb-8">Why Choose Dr. Capital VA in {regionTitles[params.region as keyof typeof regionTitles]}</h2>
+          <h2 className="font-serif text-3xl text-teal-deep mb-8">Why Choose Dr. Capital VA in {regionTitles[regionSlug as keyof typeof regionTitles]}</h2>
           <div className="space-y-6 mb-12">
             <div className="bg-white rounded-lg p-6 border-l-4 border-coral-accent">
               <h3 className="font-bold text-teal-deep mb-2">Regional Compliance Expertise</h3>
-              <p className="text-text-secondary text-sm">We understand local healthcare regulations, compliance frameworks, and practice standards specific to {regionTitles[params.region as keyof typeof regionTitles]}.</p>
+              <p className="text-text-secondary text-sm">We understand local healthcare regulations, compliance frameworks, and practice standards specific to {regionTitles[regionSlug as keyof typeof regionTitles]}.</p>
             </div>
             <div className="bg-white rounded-lg p-6 border-l-4 border-coral-accent">
               <h3 className="font-bold text-teal-deep mb-2">EHR Platform Knowledge</h3>

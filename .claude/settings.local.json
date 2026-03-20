@@ -29,7 +29,9 @@
       "Bash(curl -s -o /dev/null -w \"%{http_code}\" https://dr-capital-va-website.vercel.app/)",
       "Bash(curl -s -o /dev/null -w \"%{http_code}\" https://dr-capital-va-website.vercel.app/services/patient-scheduling)",
       "Bash(curl:*)",
-      "Bash(head -10 app/locations/[region]/page.tsx)"
+      "Bash(head -10 app/locations/[region]/page.tsx)",
+      "Bash(node -e \"const {getRegion, regions} = require\\(''./lib/healthcare-data.ts''\\); console.log\\(''regions:'', regions.length\\); console.log\\(''usa:'', regions.find\\(r => r.slug === ''usa''\\)?. slug\\);\")",
+      "Bash(grep -n \"params\\\\.region\" app/locations/[region]/page.tsx)"
     ]
   }
 }
