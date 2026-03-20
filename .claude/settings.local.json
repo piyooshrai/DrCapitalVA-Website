@@ -1,0 +1,29 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(for tool:*)",
+      "Bash(do file=\"D:/Application Development/The Human Capital Websites/DrCapitalVA/app/tools/$tool/page.tsx\" echo \"=== $tool ===\" head -4 \"$file\")",
+      "Bash(for service:*)",
+      "Bash(do file=\"D:/Application Development/The Human Capital Websites/DrCapitalVA/app/services/$service/page.tsx\" echo \"=== $service ===\" head -15 \"$file\")",
+      "Bash(npm run:*)",
+      "Bash(npm install:*)",
+      "Bash(npm update:*)",
+      "Bash(npm audit:*)",
+      "Bash(wc -w app/services/patient-scheduling/page.tsx app/locations/[region]/[city]/[service]/page.tsx app/blog/hipaa-va-guide/page.tsx)",
+      "Bash(find D: -name *.md -path *DrCapitalVA* -path *services*)",
+      "Bash(for file:*)",
+      "Bash(do echo:*)",
+      "Read(//d/Application Development/The Human Capital Websites/DrCapitalVA/**)",
+      "Bash(done)",
+      "Bash(wc -w 0*.md)",
+      "Bash(ls -1h *.md)",
+      "Bash(wc -w *.md)",
+      "Bash(du -h *.md)",
+      "Bash(\"/tmp/final_summary.txt\":*)",
+      "Read(//tmp/**)",
+      "Bash(/tmp/healthcare_content.txt:*)",
+      "Bash(ls -lh /tmp/*.json)",
+      "Bash(/tmp/PATIENT_SCHEDULING_VA_11_CITIES_OUTPUT.txt:*)"
+    ]
+  }
+}

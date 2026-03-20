@@ -3,7 +3,7 @@ import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import Breadcrumbs from '@/components/common/Breadcrumbs';
 import ContactForm from '@/components/common/ContactForm';
-import { getRegion, getCity, getService } from '@/lib/healthcare-data';
+import { getRegion, getCity, getService, regions, services } from '@/lib/healthcare-data';
 import { getCityServiceContent } from '@/lib/city-service-content';
 
 export const metadata: Metadata = {
@@ -91,6 +91,24 @@ const serviceKeywords = {
   'referral-coordination': 'Referral Coordination Virtual Assistant',
   'telehealth-support': 'Telehealth Support Virtual Assistant',
 };
+
+export async function generateStaticParams() {
+  const params: Array<{ region: string; city: string; service: string }> = [];
+
+  regions.forEach(region => {
+    region.cities.forEach(city => {
+      services.forEach(service => {
+        params.push({
+          region: region.slug,
+          city: city.slug,
+          service: service.slug,
+        });
+      });
+    });
+  });
+
+  return params;
+}
 
 export default function CityServicePage({
   params,

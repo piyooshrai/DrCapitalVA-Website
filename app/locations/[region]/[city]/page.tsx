@@ -3,12 +3,28 @@ import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import Breadcrumbs from '@/components/common/Breadcrumbs';
 import ContactForm from '@/components/common/ContactForm';
-import { getRegion, getCity } from '@/lib/healthcare-data';
+import { getRegion, getCity, regions } from '@/lib/healthcare-data';
 
 export const metadata: Metadata = {
   title: 'Healthcare Virtual Assistant Services',
   description: 'Healthcare virtual assistant support for your city.',
 };
+
+export async function generateStaticParams() {
+  const { regions } = await import('@/lib/healthcare-data').then(m => ({ regions: m.regions }));
+  const params: Array<{ region: string; city: string }> = [];
+
+  regions.forEach(region => {
+    region.cities.forEach(city => {
+      params.push({
+        region: region.slug,
+        city: city.slug,
+      });
+    });
+  });
+
+  return params;
+}
 
 export default function CityPage({ params }: { params: { region: string; city: string } }) {
   const region = getRegion(params.region);
