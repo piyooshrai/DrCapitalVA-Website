@@ -23,7 +23,13 @@
       "Read(//tmp/**)",
       "Bash(/tmp/healthcare_content.txt:*)",
       "Bash(ls -lh /tmp/*.json)",
-      "Bash(/tmp/PATIENT_SCHEDULING_VA_11_CITIES_OUTPUT.txt:*)"
+      "Bash(/tmp/PATIENT_SCHEDULING_VA_11_CITIES_OUTPUT.txt:*)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" https://dr-capital-va-website.vercel.app/locations/uk/birmingham)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" https://dr-capital-va-website.vercel.app/locations/usa/new-york)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" https://dr-capital-va-website.vercel.app/)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" https://dr-capital-va-website.vercel.app/services/patient-scheduling)",
+      "Bash(curl:*)",
+      "Bash(head -10 app/locations/[region]/page.tsx)"
     ]
   }
 }

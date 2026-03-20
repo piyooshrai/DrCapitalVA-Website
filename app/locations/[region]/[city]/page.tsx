@@ -11,7 +11,6 @@ export const metadata: Metadata = {
 };
 
 export async function generateStaticParams() {
-  const { regions } = await import('@/lib/healthcare-data').then(m => ({ regions: m.regions }));
   const params: Array<{ region: string; city: string }> = [];
 
   regions.forEach(region => {
