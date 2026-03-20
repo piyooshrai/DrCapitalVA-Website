@@ -9,6 +9,15 @@ export const metadata: Metadata = {
   description: 'Find Dr. Capital VA healthcare virtual assistant services in your region.',
 };
 
+export async function generateStaticParams() {
+  return [
+    { region: 'usa' },
+    { region: 'uk' },
+    { region: 'middle-east' },
+    { region: 'apac' },
+  ];
+}
+
 export default function RegionPage({ params }: { params: { region: string } }) {
   const region = getRegion(params.region);
   if (!region) notFound();
