@@ -15,8 +15,11 @@ export default function MedicalBillingPage() {
         <div className="max-w-3xl mx-auto">
           <Breadcrumbs items={[{ label: 'Services', href: '/services' }, { label: 'Medical Billing', href: '/services/medical-billing' }]} />
           <h1 className="font-serif text-5xl lg:text-6xl text-teal-deep mb-6">Medical Billing Virtual Assistant</h1>
-          <p className="text-xl text-text-secondary">
-            Insurance verification, eligibility checks, claims submission, denial management, and payment posting. Revenue cycle support without the headache.
+          <p className="text-lg text-text-secondary leading-relaxed mb-6">
+            Medical billing represents one of the most critical yet administratively burdensome aspects of healthcare operations. In the United States, the healthcare billing industry processes over $4.5 trillion in annual claims, yet administrative costs consume nearly 25% of total healthcare spending. Your billing operations directly impact practice revenue, compliance standing, and patient satisfaction.
+          </p>
+          <p className="text-lg text-text-secondary leading-relaxed">
+            The average medical practice loses 15-20% of legitimate revenue due to billing errors, missed claims, or improper coding alone. For a mid-sized practice generating $5 million in annual revenue, this translates to $750,000 to $1 million in lost revenue annually. Medical billing automation and expert management transforms this drain into a streamlined revenue cycle.
           </p>
         </div>
       </section>
