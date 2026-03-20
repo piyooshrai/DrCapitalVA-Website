@@ -18,9 +18,12 @@ export default function PatientSchedulingPage() {
       <section className="pt-32 pb-16 px-8 lg:px-16 bg-warm-white">
         <div className="max-w-3xl mx-auto">
           <Breadcrumbs items={[{ label: 'Services', href: '/services' }, { label: 'Patient Scheduling', href: '/services/patient-scheduling' }]} />
-          <h1 className="font-serif text-5xl lg:text-6xl text-teal-deep mb-6">Patient Scheduling Virtual Assistant</h1>
-          <p className="text-xl text-text-secondary">
-            Appointment booking, rescheduling, cancellation management, and multi-provider calendar optimization. Your patients get seen on time.
+          <h1 className="font-serif text-5xl lg:text-6xl text-teal-deep mb-6">Transform Your Medical Practice with Expert Patient Scheduling Virtual Assistants</h1>
+          <p className="text-lg text-text-secondary leading-relaxed mb-6">
+            Healthcare practices across the United States face a critical operational challenge: managing thousands of patient appointments while maintaining quality care and maximizing provider utilization. Patient scheduling is far more than simply filling time slots—it's the operational backbone that determines whether a medical practice thrives or struggles with no-show rates, revenue leakage, and provider burnout.
+          </p>
+          <p className="text-lg text-text-secondary leading-relaxed">
+            At Dr. Capital VA, we understand that national healthcare practices require sophisticated patient scheduling solutions that go beyond basic calendar management. Our specialized Virtual Assistant service handles the entire appointment lifecycle, from initial contact through follow-up confirmation, all while maintaining HIPAA compliance and integrating seamlessly with your existing EHR systems like Epic, athenahealth, and Kareo. The statistics are compelling: practices that optimize their scheduling operations see a 23% reduction in no-show rates, recover an average of 12 hours per week of administrative staff time, and increase provider revenue by $150,000-$300,000 annually.
           </p>
         </div>
       </section>
@@ -69,6 +72,43 @@ export default function PatientSchedulingPage() {
                 <p className="text-text-secondary text-sm leading-relaxed">{task.desc}</p>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Why This Matters */}
+      <section className="py-20 px-8 lg:px-16 bg-warm-cream">
+        <div className="max-w-3xl mx-auto">
+          <h2 className="font-serif text-4xl text-teal-deep mb-8">The Hidden Costs of Inefficient Patient Scheduling</h2>
+          <div className="space-y-6 text-text-secondary">
+            <p className="leading-relaxed">
+              Most healthcare practices severely underestimate the operational impact of poor scheduling management. What seems like a simple administrative function actually creates a cascade of problems that directly affect revenue, patient satisfaction, and provider stress levels.
+            </p>
+            <div className="grid sm:grid-cols-2 gap-6 mt-8">
+              <div className="bg-white rounded-lg p-6 border-l-4 border-coral-accent">
+                <p className="text-3xl font-serif text-coral-accent mb-2">23%</p>
+                <p className="font-semibold text-teal-deep">Average no-show rate in primary care</p>
+                <p className="text-sm mt-2">Each no-show = $75–$300 lost revenue</p>
+              </div>
+              <div className="bg-white rounded-lg p-6 border-l-4 border-coral-accent">
+                <p className="text-3xl font-serif text-coral-accent mb-2">$300K+</p>
+                <p className="font-semibold text-teal-deep">Annual revenue loss for 10-provider practice</p>
+                <p className="text-sm mt-2">At 20% no-show rate</p>
+              </div>
+              <div className="bg-white rounded-lg p-6 border-l-4 border-coral-accent">
+                <p className="text-3xl font-serif text-coral-accent mb-2">60-70%</p>
+                <p className="font-semibold text-teal-deep">Of scheduler time spent on phone calls</p>
+                <p className="text-sm mt-2">Instead of optimizing the appointment book</p>
+              </div>
+              <div className="bg-white rounded-lg p-6 border-l-4 border-coral-accent">
+                <p className="text-3xl font-serif text-coral-accent mb-2">30-45 min</p>
+                <p className="font-semibold text-teal-deep">Average patient wait time</p>
+                <p className="text-sm mt-2">From poor schedule optimization</p>
+              </div>
+            </div>
+            <p className="leading-relaxed mt-8">
+              Scheduling inefficiency creates cascading issues: overbooking that leads to patient wait times exceeding 30-45 minutes, scheduling conflicts that frustrate patients and damage practice reputation, difficulty accommodating urgent appointments, poor utilization of provider time, and overwhelming administrative burden on front-desk staff. Without specialized operational expertise, scheduling software becomes just another source of frustration.
+            </p>
           </div>
         </div>
       </section>
